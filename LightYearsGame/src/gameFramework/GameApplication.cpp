@@ -1,10 +1,22 @@
 #include "gameFramework/GameApplication.h"
-
-ly::Application* GetApplication(){
+#include "framework/World.h"
+#include "framework/Actor.h"
+ly::Application *GetApplication()
+{
     return new ly::GameApplication();
 }
 
-namespace ly {
-    
+namespace ly
+{
+    GameApplication::GameApplication()
+    {
+        Weak<World> world = LoadWord<World>();
+        world.lock()->SpawnActor<Actor>();
+        world.lock()->SpawnActor<Actor>();
+        world.lock()->SpawnActor<Actor>();
+        world.lock()->SpawnActor<Actor>();
+        world.lock()->SpawnActor<Actor>();
+        world.lock()->SpawnActor<Actor>();
+        world.lock()->SpawnActor<Actor>();
+    }
 }
-

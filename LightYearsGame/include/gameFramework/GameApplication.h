@@ -2,5 +2,7 @@
 #include <framework/Application.h>
 
 namespace ly{
-    class GameApplication : public Application{};
+    class GameApplication : public Application{
+        public : GameApplication();
+    };
 }
