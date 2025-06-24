@@ -33,7 +33,7 @@ namespace ly
 
     void Actor::Tick(float deltaTime)
     {
-        LOG("The actor is tick %f", 1.0f / deltaTime);
+        // LOG("The actor is tick %f", 1.0f / deltaTime);
     }
 
     void Actor::SetTexture(const std::string &texturePath)
@@ -41,13 +41,13 @@ namespace ly
         if (texturePath != "")
         {
             AssetManager &assetManager = AssetManager::Get();
-            mTexture = assetManager.GetTexture(texturePath);
-            if (mTexture.has_value() == false)
+            auto tex = assetManager.GetTexture(texturePath);
+            if (!tex)
                 return;
-            mSprite.value().setTexture(**mTexture);
-            int textureWidth = mTexture.value()->getSize().x;
-            int textureHeight = mTexture.value()->getSize().y;
-            mSprite.value().setTextureRect(sf::IntRect{sf::Vector2i{}, sf::Vector2i{textureWidth, textureHeight}});
+            mTexture.emplace(tex);
+            int textureWidth = tex->getSize().x;
+            int textureHeight = tex->getSize().y;
+            mSprite.emplace(**mTexture, sf::IntRect{sf::Vector2i{0, 0}, sf::Vector2i{textureWidth, textureHeight}});
         }
         else
         {
@@ -58,7 +58,7 @@ namespace ly
 
     void Actor::Render(sf::RenderWindow &window)
     {
-        if (mSprite.has_value())
+        if (mSprite)
         {
             window.draw(mSprite.value());
         }

@@ -34,7 +34,7 @@ namespace ly
             }
         }
 
-        LOG("Is making the tick by the override")
+        // LOG("Is making the tick by the override")
     }
 
 }

@@ -65,7 +65,7 @@ namespace ly
 
     void Application::Tick(float deltaTime)
     {
-        LOG("the target framerate is %f", 1.f / deltaTime);
+        // LOG("the target framerate is %f", 1.f / deltaTime);
     }
 
 }
