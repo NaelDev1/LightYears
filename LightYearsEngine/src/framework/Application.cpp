@@ -4,10 +4,14 @@
 
 namespace ly
 {
-    Application::Application()
-        : mWindow(sf::VideoMode({500, 500}), "Game Window"),
+    Application::Application(unsigned int windowWidth, unsigned int windowHeight,
+                             const std::string &windowTitle, std::uint32_t style)
+        : mWindow(sf::VideoMode({windowWidth, windowHeight}), windowTitle, style),
           mTargetFrameRate(60),
-          mTickClock()
+          mClearTime{2.f},
+          mTickClock{},
+          mCleanClock{}
+
     {
     }
 
@@ -39,7 +43,8 @@ namespace ly
     void Application::TickInternal(float deltaTime)
     {
         Tick(deltaTime);
-        if(mCurrentWorld){
+        if (mCurrentWorld)
+        {
             mCurrentWorld->BeganPlayInternal();
             mCurrentWorld->TickInternal(deltaTime);
         }
@@ -52,12 +57,10 @@ namespace ly
     }
     void Application::Render()
     {
-
-        sf::RectangleShape rec = sf::RectangleShape(sf::Vector2f(120, 120));
-        rec.setFillColor(sf::Color::Red);
-        rec.setPosition(sf::Vector2f(mWindow.getSize().x / 2 - rec.getSize().x / 2,
-                                     mWindow.getSize().y / 2 - rec.getSize().y / 2));
-        mWindow.draw(rec);
+        if (mCurrentWorld)
+        {
+            mCurrentWorld->Render(mWindow);
+        }
     }
 
     void Application::Tick(float deltaTime)

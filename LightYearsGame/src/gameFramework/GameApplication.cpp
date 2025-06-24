@@ -3,6 +3,7 @@
 #include "framework/Actor.h"
 #include "framework/Object.h"
 #include "Core.h"
+#include "config.h"
 
 ly::Application *GetApplication()
 {
@@ -11,11 +12,12 @@ ly::Application *GetApplication()
 
 namespace ly
 {
-    GameApplication::GameApplication()
+    GameApplication::GameApplication() : Application{400, 650, "LightYears", sf::Style::Close}
     {
         Weak<World> world = LoadWord<World>();
         world.lock()->SpawnActor<Actor>();
         mActorToDestroy = world.lock()->SpawnActor<Actor>();
+        mActorToDestroy.lock()->SetTexture(GetResourceDir() + "SpaceShooterRedux/PNG/playerShip1_blue.png");
 
         mCounterTime = 0;
     };

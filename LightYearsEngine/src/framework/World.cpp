@@ -45,7 +45,7 @@ namespace ly
     }
     void World::Tick(float deltaTime)
     {
-        LOG("The world begin tick %f", 1.f / deltaTime);
+        // LOG("The world begin tick %f", 1.f / deltaTime);
     }
 
     void World::BeganPlayInternal()
@@ -54,6 +54,14 @@ namespace ly
         {
             mBeganPlay = true;
             BeganPlay();
+        }
+    }
+
+    void World::Render(sf::RenderWindow &window)
+    {
+        for (auto &inter : mActors)
+        {
+            inter->Render(window);
         }
     }
 

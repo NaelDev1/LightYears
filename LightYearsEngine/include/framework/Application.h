@@ -7,7 +7,8 @@ namespace ly
     class Application
     {
     public:
-        Application();
+        Application(unsigned int windowWidth, unsigned int windowHeight,
+                    const std::string &windowTitle, std::uint32_t style);
         void Run();
 
         template <typename WorldType>
@@ -22,7 +23,9 @@ namespace ly
 
         sf::RenderWindow mWindow;
         float mTargetFrameRate;
+        float mClearTime;
         sf::Clock mTickClock;
+        sf::Clock mCleanClock;
 
         Shared<World> mCurrentWorld;
     };
