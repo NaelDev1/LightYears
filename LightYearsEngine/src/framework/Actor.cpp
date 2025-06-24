@@ -28,12 +28,12 @@ namespace ly
 
     void Actor::BeginPlay()
     {
-        LOG("O ator foi dropado");
+        LOG("The actor has ben dropped");
     }
 
     void Actor::Tick(float deltaTime)
     {
-        LOG("O ator esta tickando %f", 1.0f / deltaTime);
+        LOG("The actor is tick %f", 1.0f / deltaTime);
     }
 
     void Actor::SetTexture(const std::string &texturePath)
@@ -52,7 +52,7 @@ namespace ly
         else
         {
 
-            LOG("A textura está vazia , por isso não setamos ela!");
+            LOG("The texture is empty");
         }
     }
 
