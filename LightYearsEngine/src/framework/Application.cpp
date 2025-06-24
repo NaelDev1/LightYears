@@ -1,6 +1,7 @@
 #include "framework/Application.h"
 #include <Core.h>
 #include <framework/World.h>
+#include "framework/AssetManager.h"
 
 namespace ly
 {
@@ -47,6 +48,14 @@ namespace ly
         {
             mCurrentWorld->BeganPlayInternal();
             mCurrentWorld->TickInternal(deltaTime);
+        }
+
+        auto timeElapsed = mCleanClock.getElapsedTime().asSeconds();
+        if (timeElapsed > mClearTime)
+        {
+            LOG("The time elapsed is %f", timeElapsed);
+            mCleanClock.restart();
+            AssetManager::Get().CleanCycle();
         }
     }
     void Application::RenderInternal()

@@ -29,6 +29,7 @@ namespace ly
             }
             else
             {
+                LOG("Cleaning the texture!");
                 mCacheTexture.erase(found);
             }
         }
@@ -36,6 +37,7 @@ namespace ly
         Shared<sf::Texture> newTexture{new sf::Texture};
         if (newTexture->loadFromFile(pathName))
         {
+            LOG("Adding the texture on the cache!")
             mCacheTexture.insert({pathName, newTexture});
             return newTexture;
         }
@@ -50,6 +52,7 @@ namespace ly
 
             if (iter->second.use_count() == 1)
             {
+                LOG("Cleaning the texture!");
                 iter = mCacheTexture.erase(iter);
             }
             else
