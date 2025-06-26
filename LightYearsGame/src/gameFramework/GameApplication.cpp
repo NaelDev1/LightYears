@@ -4,6 +4,7 @@
 #include "framework/Object.h"
 #include "Core.h"
 #include "config.h"
+#include "spaceship/Spaceship.h"
 
 ly::Application *GetApplication()
 {
@@ -16,12 +17,13 @@ namespace ly
     {
         Weak<World> world = LoadWord<World>();
         world.lock()->SpawnActor<Actor>();
-        mActorToDestroy = world.lock()->SpawnActor<Actor>();
-        mActorToDestroy.lock()->SetTexture(GetResourceDir() + "SpaceShooterRedux/PNG/playerShip1_blue.png");
-        int actorWidth = mActorToDestroy.lock()->GetTextureWidth();
-        int actorHeight = mActorToDestroy.lock()->GetTextureHeight();
-        mActorToDestroy.lock()->SetActorLocation({200.0f, 325.0f});
-        mActorToDestroy.lock()->SetActorRotatioin(30.f);
+        newSpaceShipTest = world.lock()->SpawnActor<Spaceship>();
+        newSpaceShipTest.lock()->SetTexture(GetResourceDir() + "SpaceShooterRedux/PNG/playerShip1_blue.png");
+        int actorWidth = newSpaceShipTest.lock()->GetTextureWidth();
+        int actorHeight = newSpaceShipTest.lock()->GetTextureHeight();
+        newSpaceShipTest.lock()->SetActorLocation({200.0f, 325.0f});
+        // newSpaceShipTest.lock()->SetActorRotatioin(30.f);
+        newSpaceShipTest.lock()->SetVelocity({0, -200.f});
         mCounterTime = 0;
     };
 

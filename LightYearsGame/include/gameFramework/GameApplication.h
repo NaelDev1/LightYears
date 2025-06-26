@@ -2,6 +2,7 @@
 #include <framework/Application.h>
 #include "framework/Actor.h"
 #include "Core.h"
+#include "spaceship/Spaceship.h"
 
 namespace ly
 {
@@ -13,6 +14,6 @@ namespace ly
 
     private:
         float mCounterTime;
-        Weak<Actor> mActorToDestroy;
+        Weak<Spaceship> newSpaceShipTest;
     };
 }
